@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My To-Do List</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f6fa;
+      display: flex;
+      height: 100vh;
+    }
+
+    /* Left placeholder for tasks */
+    .tasks-section {
+      flex: 1;
+      background-color: #ffffff;
+      padding: 40px;
+      border-right: 2px solid #eee;
+    }
+
+    /* Right form section */
+    .form-section {
+      width: 400px;
+      background-color: #f9fafc;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-shadow: -4px 0 10px rgba(0, 0, 0, 0.05);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    label {
+      font-weight: 600;
+      color: #555;
+    }
+
+    input, textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      transition: border 0.2s ease;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+
+    textarea {
+      resize: none;
+      height: 80px;
+    }
+
+    button {
+      padding: 12px;
+      background-color: #007bff;
+      border: none;
+      border-radius: 6px;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .footer {
+      margin-top: 20px;
+      text-align: center;
+      color: #888;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="tasks-section">
+    <!-- This will be for the user's tasks later -->
+    <h1>My Tasks</h1>
+  </div>
+
+  <div class="form-section">
+    <h2>Add a To-Do</h2>
+    <form method="POST" action="{{ url_for('todo', username=username) }}">
+      <div>
+        <label for="task">To-Do Item</label>
+        <input type="text" id="task" name="task" placeholder="Enter task..." required>
+      </div>
+
+      <div>
+        <label for="info">More Info</label>
+        <textarea id="info" name="info" placeholder="Add extra details..."></textarea>
+      </div>
+
+      <div>
+        <label for="due">Due Date & Time</label>
+        <input type="datetime-local" id="due" name="due">
+      </div>
+
+      <button type="submit">Add Task</button>
+    </form>
+    <div class="footer">Designed by {{ username }}</div>
+  </div>
+
+</body>
+</html>
