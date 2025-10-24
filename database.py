@@ -59,13 +59,16 @@ def add_users_task(users_task):
             cur.execute("""
                 INSERT INTO to_do_list_table_usertask (username,task_name,task_info,task_date,status)
                 VALUES (%s,%s,%s,%s,%s)
+                RETURNING id, username, task_name, task_info, task_date, status
                 """, (
                     users_task["username"],
                     users_task["task_name"],
                     users_task["task_info"],
                     users_task["task_date"],
                     users_task["task_status"],
-                ))
+                )
+                )
+            return cur.fetchone()
 
 
 def get_users_task(username):
